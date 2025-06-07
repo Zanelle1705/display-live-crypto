@@ -1,4 +1,18 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import CryptoDetails from "./pages/CryptoDetails";
+
 function App() {
-  return <div className="text-red-500 text-3xl font-bold">Hello Tailwind!</div>;
+  return (
+    <Router>
+      <div className="min-h-screen bg-gray-100">
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/crypto/:id" element={<CryptoDetails />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
+
 export default App;
