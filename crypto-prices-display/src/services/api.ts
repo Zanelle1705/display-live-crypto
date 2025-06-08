@@ -20,7 +20,6 @@ export const getTop10Cryptocurrencies = async (): Promise<Cryptocurrency[]> => {
         price_change_percentage: "24h",
       },
     });
-    console.log("getTop10Cryptocurrencies", response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching top cryptocurrencies:", error);
@@ -42,7 +41,6 @@ export const getCryptocurrencyDetails = async (
         developer_data: false,
       },
     });
-    console.log("getCryptocurrencyDetails", response.data);
     return response.data;
   } catch (error) {
     console.error(`Error fetching details for ${id}:`, error);

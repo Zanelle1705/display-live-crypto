@@ -33,9 +33,6 @@ const CryptoDetails: React.FC = () => {
     );
   }
 
-  console.log("Crypto Details Data:", data);
-  console.log("Image URL:", data.image);
-
   return (
     <div className="min-h-screen bg-gray-100 py-8">
       <div className="max-w-4xl mx-auto px-4">
