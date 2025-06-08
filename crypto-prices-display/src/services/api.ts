@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { Cryptocurrency, CryptocurrencyDetails } from "../types/crypto";
 
 const BASE_URL = "https://api.coingecko.com/api/v3";
 
@@ -9,19 +10,17 @@ const api = axios.create({
   },
 });
 
-export const getTop10Cryptocurrencies = async () => {
+// Get top 10 cryptocurrencies by market cap
+export const getTop10Cryptocurrencies = async (): Promise<Cryptocurrency[]> => {
   try {
     const response = await api.get("/coins/markets", {
       params: {
         vs_currency: "zar",
-        order: "market_cap_desc",
         per_page: 10,
-        page: 1,
-        sparkline: false,
         price_change_percentage: "24h",
-        locale: "en",
       },
     });
+    console.log("getTop10Cryptocurrencies", response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching top cryptocurrencies:", error);
@@ -29,7 +28,10 @@ export const getTop10Cryptocurrencies = async () => {
   }
 };
 
-export const getCryptocurrencyDetails = async (id: string) => {
+// Get details for a single cryptocurrency by ID
+export const getCryptocurrencyDetails = async (
+  id: string
+): Promise<CryptocurrencyDetails> => {
   try {
     const response = await api.get(`/coins/${id}`, {
       params: {
@@ -38,9 +40,9 @@ export const getCryptocurrencyDetails = async (id: string) => {
         market_data: true,
         community_data: false,
         developer_data: false,
-        sparkline: false,
       },
     });
+    console.log("getCryptocurrencyDetails", response.data);
     return response.data;
   } catch (error) {
     console.error(`Error fetching details for ${id}:`, error);
