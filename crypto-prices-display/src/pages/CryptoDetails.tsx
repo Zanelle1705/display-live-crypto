@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useCryptocurrencyDetails } from "../hooks/useCryptoDetails";
 
 const CryptoDetails: React.FC = () => {
@@ -12,6 +12,7 @@ const CryptoDetails: React.FC = () => {
 
   return (
     <div>
+      <Link to="/">← Back to Dashboard</Link>
       <h1>{data.name}</h1>
       <div>
         <p>Price: R{data.market_data.current_price.zar}</p>
