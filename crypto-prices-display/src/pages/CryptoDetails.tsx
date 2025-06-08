@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useCryptocurrencyDetails } from "../hooks/useCryptoDetails";
 
 const CryptoDetails: React.FC = () => {
   const { id } = useParams();
   const { data, loading, error } = useCryptocurrencyDetails(id!);
+  const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
   if (loading) {
     return (
@@ -141,7 +142,19 @@ const CryptoDetails: React.FC = () => {
                 <h2 className="text-lg font-semibold text-gray-800 mb-3">
                   Description
                 </h2>
-                <p className="text-gray-700">{data.description.en}</p>
+                <div
+                  className="text-gray-700 cursor-pointer"
+                  onClick={() =>
+                    setIsDescriptionExpanded(!isDescriptionExpanded)
+                  }
+                >
+                  <p className={isDescriptionExpanded ? "" : "line-clamp-5"}>
+                    {data.description.en}
+                  </p>
+                  <p className="text-gray-400 text-xs mt-2 mr-2 text-right">
+                    {isDescriptionExpanded ? "Show less" : "Click to read more"}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
