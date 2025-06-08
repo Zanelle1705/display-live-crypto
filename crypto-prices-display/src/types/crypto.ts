@@ -13,7 +13,11 @@ export interface CryptocurrencyDetails {
   id: string;
   symbol: string;
   name: string;
-  image: string;
+  image: {
+    large: string;
+    small: string;
+    thumb: string;
+  };
   market_cap_rank: number;
   last_updated: string;
   description: {
